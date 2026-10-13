@@ -262,3 +262,32 @@ h1,h2,h3,.pull{text-wrap:balance}
 .covers img:nth-child(even){transform:translateY(34px)!important}
 .hero figcaption{margin-top:34px;max-width:440px;margin-left:auto}
 @media (max-width:900px){.covers,.hero figcaption{margin-left:0;max-width:400px}}
+
+/* Photography */
+.photo{margin:0}
+.photo img{width:100%;height:auto;display:block;background:var(--linen)}
+.photo figcaption{margin-top:16px}
+.cap-title{display:block;font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.3;color:var(--pine)}
+.cap-sub{display:block;font-size:.92rem;color:var(--slate);margin-top:6px}
+.dark .cap-title{color:var(--ivory)} .dark .cap-sub{color:#aeb8af}
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:start}
+.contrast .photo:last-child{margin-top:clamp(0px,6vw,90px)}
+.contrast .tag{display:block;font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.contrast .photo:first-child .tag{color:var(--clay)}
+.contrast .photo:last-child .tag{color:var(--sage)}
+@media (max-width:700px){.contrast{grid-template-columns:1fr;gap:48px}.contrast .photo:last-child{margin-top:0}}
+.band-photo{padding:0}
+.band-photo img{width:100%;height:clamp(300px,44vw,680px);object-fit:cover;object-position:50% 40%;display:block}
+.band-photo figcaption{max-width:var(--wrap);margin:0 auto;padding:18px var(--gutter) 0}
+.media-col .photo{margin-top:44px}
+.media-col .photo img{max-width:520px}
+
+/* Home contrast: typographic "usual" panel opposite the photo */
+.band-photo img{object-position:var(--pos,50% 40%)}
+.contrast .panel{aspect-ratio:4/5;background:var(--pine);color:var(--ivory);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,4.5vw,64px);box-sizing:border-box}
+.contrast .panel-rule{display:block;width:44px;height:1px;background:var(--brass-lt);margin-bottom:28px}
+.contrast .panel-q{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.7rem,2.9vw,2.6rem);line-height:1.18;margin:0;color:var(--ivory);max-width:14ch}
+.contrast .panel-note{margin:22px 0 0;font-size:.82rem;letter-spacing:.06em;color:#aeb8af}
+.who{align-items:center}
+.who .photo img{max-width:100%}
+@media (max-width:700px){.contrast .panel{aspect-ratio:auto;min-height:320px}}
