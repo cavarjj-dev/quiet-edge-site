@@ -1,8 +1,5 @@
 name: Decode binary assets
 on:
-  push:
-    branches: [main]
-    paths: ['_b64/**']
   workflow_dispatch:
 permissions:
   contents: write
