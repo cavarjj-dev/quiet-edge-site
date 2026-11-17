@@ -16,6 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/scenes/dawn-court.webp" as="image" fetchpriority="high">
 <link rel="preload" href="assets/fonts/dmsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -31,12 +32,52 @@
 </header>
 <main id="main">
 
-<section class="hero">
+<section class="opening" id="opening" aria-labelledby="opening-h">
+  <div class="opening-pin">
+    <div class="opening-bg">
+      <img src="assets/img/scenes/dawn-court.webp" width="1280" height="720" alt="An empty outdoor court at dawn, with no people on it." fetchpriority="high">
+    </div>
+    <div class="opening-field" aria-hidden="true">
+      <img src="assets/img/scenes/dusk-field.webp" width="1280" height="720" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="opening-window" id="opening-window">
+      <img src="assets/img/scenes/dusk-ride.webp" width="1280" height="720" alt="The view through a car windshield at dusk, with no one in the frame.">
+    </div>
+    <div class="opening-frame" aria-hidden="true"></div>
+    <div class="opening-copy">
+      <p class="opening-kicker">The Quiet Edge</p>
+      <h1 class="opening-h" id="opening-h"><span class="line-a">Your mental game matters more than your next tournament.</span><span class="line-b">We support you. The athlete and the parent, on the same lesson.</span></h1>
+      <a class="more opening-next" href="#film">Check this out first</a>
+    </div>
+  </div>
+</section>
+
+<section class="film" id="film" aria-labelledby="film-title">
+  <div class="wrap">
+    <div class="film-bar">
+      <p class="label">The Quiet Edge channel</p>
+      <a class="more" href="https://www.youtube.com/@thequietedgeexperience">Watch on YouTube</a>
+    </div>
+    <h2 id="film-title">Check this out first.</h2>
+    <figure class="lite">
+      <div class="lite-frame">
+        <a class="lite-play" href="https://www.youtube.com/watch?v=msroRqTqmF8" data-video="msroRqTqmF8" data-title="The Quiet Edge introduction">
+          <img src="https://i.ytimg.com/vi/msroRqTqmF8/maxresdefault.jpg" alt="" width="1280" height="720">
+          <span class="play-face" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg></span>
+          <span class="visually-hidden">Play the Quiet Edge introduction</span>
+        </a>
+      </div>
+      <figcaption class="small">From the Quiet Edge YouTube channel. The player loads when you press play.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="hero" id="continue">
   <div class="hero-rule" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
-      <p class="label">Mental performance for youth sport</p>
-      <h1>Same lesson.<br><em>Both seats.</em></h1>
+      <p class="label">If you are interested, let’s continue</p>
+      <h2 class="hero-title">Same lesson.<br><em>Both seats.</em></h2>
       <p class="usp">The Quiet Edge trains the athlete and the parent with the same lesson, so the mental game your coaches teach at practice survives the car ride home.</p>
       <p class="hero-note">Short videos, tools, and workbooks. Five minutes or less, including on the drive.</p>
       <div class="actions"><a class="btn" href="clubs.html">Programs for clubs</a><a class="more" href="parents.html">For parents</a></div>
@@ -58,23 +99,75 @@
   </div>
 </section>
 
-<section class="film" aria-labelledby="film-title">
+<section class="audience" id="who">
   <div class="wrap">
-    <div class="film-bar">
-      <p class="label">The Quiet Edge channel</p>
-      <a class="more" href="https://www.youtube.com/@thequietedgeexperience">Watch on YouTube</a>
+    <p class="label">Who are you?</p>
+    <h2>Start with the seat you are in.</h2>
+    <p class="lede">Four short paths. Each one uses the pages and tools already on this site.</p>
+    <div class="path-grid">
+      <article class="path">
+        <h3>Athletes</h3>
+        <p>One mental skill, about five minutes. You watch the Athlete Edition. The adult in the front seat gets the same topic, in their own edition.</p>
+        <div class="actions"><a class="more" href="resources.html#episodes">Episodes</a><a class="more" href="https://cavarjj-dev.github.io/quiet-edge-tools/">Tools</a></div>
+      </article>
+      <article class="path">
+        <h3>Parents and guardians</h3>
+        <p>A parent edition for every lesson, one question for the drive, and workbooks for the household. Whoever sits up front can use them.</p>
+        <div class="actions"><a class="more" href="parents.html">For parents</a><a class="more" href="https://cavarjj-dev.github.io/quiet-edge-tools/router/parent-router.html">One-minute guide</a></div>
+      </article>
+      <article class="path">
+        <h3>Coaches</h3>
+        <p>Ten minutes a week: one episode, one huddle question, one note home. Your athletes stay with you. This does not replace your coaching.</p>
+        <div class="actions"><a class="more" href="clubs.html">Club programs</a><a class="more" href="resources.html#episodes">Episode library</a></div>
+      </article>
+      <article class="path">
+        <h3>Club and organization leaders</h3>
+        <p>A license for the roster, from one team to the whole club. Julian can lead a parent session. He is a facilitator. The athletes keep their own coaches.</p>
+        <div class="actions"><a class="more" href="clubs.html#licenses">Licenses</a><a class="more" href="contact.html#inquiry">Club inquiry</a></div>
+      </article>
     </div>
-    <h2 id="film-title">A short introduction.</h2>
-    <figure class="lite">
-      <div class="lite-frame">
-        <a class="lite-play" href="https://www.youtube.com/watch?v=msroRqTqmF8" data-video="msroRqTqmF8" data-title="The Quiet Edge introduction">
-          <img src="https://i.ytimg.com/vi/msroRqTqmF8/maxresdefault.jpg" alt="" width="1280" height="720">
-          <span class="play-face" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg></span>
-          <span class="visually-hidden">Play the Quiet Edge introduction</span>
-        </a>
-      </div>
-      <figcaption class="small">From the Quiet Edge YouTube channel. The player loads when you press play.</figcaption>
-    </figure>
+  </div>
+</section>
+
+<section class="research" id="research">
+  <div class="wrap">
+    <p class="label">What the research describes</p>
+    <h2>Pressure shows up in the numbers.</h2>
+    <p class="lede">These figures are what young people and national surveys reported. They are not results of The Quiet Edge, and they do not show that a program causes athletes to stay.</p>
+    <div class="stat-grid">
+      <article class="stat" data-reveal>
+        <p class="stat-figure" aria-label="21 percent of former players and 9 percent of current players"><span class="count" data-to="21">21</span>%<span class="stat-vs">and</span><span class="count" data-to="9">9</span>%</p>
+        <p>Former players, compared with current players, who said they were pressured to play when they did not want to.</p>
+        <div class="meter" data-reveal>
+          <div class="meter-row"><span>Former players</span><span class="meter-track"><span style="--p:21"></span></span><span>21%</span></div>
+          <div class="meter-row"><span>Current players</span><span class="meter-track"><span style="--p:9"></span></span><span>9%</span></div>
+        </div>
+        <p class="cite"><a href="https://projectplay.org/news/aspen-institute-national-survey-of-youth-and-sports-15-key-findings">Aspen Institute Project Play, National Youth Athlete Survey, 2026</a></p>
+      </article>
+      <article class="stat" data-reveal style="--d:1">
+        <p class="stat-figure" aria-label="86 percent of current players and 58 percent of former players"><span class="count" data-to="86">86</span>%<span class="stat-vs">and</span><span class="count" data-to="58">58</span>%</p>
+        <p>Current players whose parents attend games or practices, compared with former players who had that same support.</p>
+        <div class="meter" data-reveal>
+          <div class="meter-row"><span>Current players</span><span class="meter-track"><span style="--p:86"></span></span><span>86%</span></div>
+          <div class="meter-row"><span>Former players</span><span class="meter-track"><span style="--p:58"></span></span><span>58%</span></div>
+        </div>
+        <p class="cite"><a href="https://projectplay.org/news/aspen-institute-national-survey-of-youth-and-sports-15-key-findings">Aspen Institute Project Play, National Youth Athlete Survey, 2026</a></p>
+      </article>
+      <article class="stat" data-reveal>
+        <p class="stat-figure" aria-label="48 percent say having fun, 47 percent say playing with friends, 12 percent say a college scholarship"><span class="count" data-to="48">48</span>%<span class="stat-vs">/</span><span class="count" data-to="47">47</span>%<span class="stat-vs">/</span><span class="count" data-to="12">12</span>%</p>
+        <p>Current players who named having fun, playing with friends, or earning a college scholarship or roster spot as a favorite part of playing. Fun and friends lead. The scholarship is a much smaller share.</p>
+        <p class="cite"><a href="https://projectplay.org/news/aspen-institute-national-survey-of-youth-and-sports-15-key-findings">Aspen Institute Project Play, National Youth Athlete Survey, 2026</a></p>
+      </article>
+      <article class="stat" data-reveal style="--d:1">
+        <p class="stat-figure" aria-label="81 percent">81%</p>
+        <p>Current players who say their mental state gets better when they play. Among youth who have never played, 68% believe their mental state would improve if they did. That is what they expect, not a measured effect of this program.</p>
+        <p class="cite"><a href="https://projectplay.org/news/aspen-institute-national-survey-of-youth-and-sports-15-key-findings">Aspen Institute Project Play, National Youth Athlete Survey, 2026</a></p>
+      </article>
+    </div>
+    <div class="note research-note">
+      <p>The same survey puts the average age former players stopped at 12.93 years. In 2023, 55.4% of youth ages 6–17 played sports, against a federal goal of 63% by 2030.</p>
+      <p class="cite">Sources: <a href="https://projectplay.org/news/aspen-institute-national-survey-of-youth-and-sports-15-key-findings">Aspen Institute Project Play, National Youth Athlete Survey, published April 28, 2026</a> (3,827 youth ages 10–17, surveyed October 1–December 1, 2025, with Utah State University and Louisiana Tech University). Participation rate: <a href="https://projectplay.org/state-of-play-2025/introduction">Aspen Institute Project Play, State of Play 2025</a>, citing the National Survey of Children’s Health.</p>
+    </div>
   </div>
 </section>
 

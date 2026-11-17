@@ -1,6 +1,8 @@
 # Photo credits
 
-Every photograph on the site is real photography from **Pexels** (https://www.pexels.com). None of it is AI-generated. All eight were downloaded Oct 13, 2026 from the Pexels CDN, then cropped, color-graded toward the brand palette (lower saturation, pine shadows, ivory highlights; extra desaturation on the red walls in the court and mom-son shots) and exported to WebP at 800 and 1600 px with `_build/photos.py`. The originals are kept in `/workspace/quietedge/_build/photos_src/`.
+The three full-bleed scenes in the homepage opening (`assets/img/scenes/dawn-court.webp`, `dusk-ride.webp`, `dusk-field.webp`) are generated artwork made for this site: an empty court at dawn, an empty car interior at dusk, and an empty field at dusk. They do not depict real people.
+
+The photographs of people are real photography from **Pexels** (https://www.pexels.com). All eight were downloaded Oct 13, 2026 from the Pexels CDN, then cropped, color-graded toward the brand palette (lower saturation, pine shadows, ivory highlights; extra desaturation on the red walls in the court and mom-son shots) and exported to WebP at 800 and 1600 px with `_build/photos.py`. The originals are kept in `/workspace/quietedge/_build/photos_src/`.
 
 **License:** Pexels License (https://www.pexels.com/license/, checked Oct 13, 2026). Free for commercial use, editing is allowed, and attribution isn't required, though it's appreciated. The footer has a short courtesy line: "Photographs courtesy of Pexels contributors." The rules that matter here: *identifiable people may not appear in a bad light or in a way that is offensive*, and no implied endorsement.
 - Every photo is used in a positive or neutral context. The "usual" side of the home contrast is a typographic pine panel, with no photo and no person.
