@@ -1074,6 +1074,14 @@ html.motion .is-in .meter-track span { scale: 1 1; transition: scale 1s var(--ea
 }
 
 /* Footer */
+.built { padding-top: clamp(28px, 4vw, 48px); padding-bottom: clamp(48px, 7vw, 88px); }
+.built-in { max-width: 46rem; }
+.built h2 { margin-bottom: .55em; }
+.built p { font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.6; margin: 0; }
+.foot-built { max-width: 52rem; margin: 8px 0 28px; }
+.foot-built .foot-title { margin-bottom: 8px; }
+.foot-built p:last-child { margin: 0; font-size: .86rem; line-height: 1.55; color: #d5ddd6; }
+
 .site-footer {
   background: var(--pine-deep);
   color: #d5ddd6;
