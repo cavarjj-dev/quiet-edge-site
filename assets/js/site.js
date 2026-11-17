@@ -91,6 +91,22 @@
     if (!isNaN(end) && now > end) el.hidden = true;
   });
 
+  document.querySelectorAll('a.lite-play').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('data-video');
+      var frame = link.closest('.lite-frame');
+      if (!id || !frame) return;
+      e.preventDefault();
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0';
+      iframe.title = link.getAttribute('data-title') || 'The Quiet Edge introduction';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.replaceChildren(iframe);
+    });
+  });
+
   var form = document.getElementById('club-inquiry');
   if (form) {
     form.addEventListener('submit', function (e) {
