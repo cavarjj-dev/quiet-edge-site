@@ -187,16 +187,18 @@
     function at(spread) {
       return shape.map(function (o) { return [50 + o[0] * spread, 44 + o[1] * spread]; });
     }
+    function num(n) { return n.toFixed(2); }
     function poly(pts) {
-      return 'polygon(' + pts.map(function (p) { return p[0].toFixed(2) + '% ' + p[1].toFixed(2) + '%'; }).join(', ') + ')';
+      return 'polygon(' + pts.map(function (p) { return num(p[0]) + '% ' + num(p[1]) + '%'; }).join(', ') + ')';
     }
-    function box(pts) {
-      var xs = pts.map(function (p) { return p[0]; });
-      var ys = pts.map(function (p) { return p[1]; });
-      var l = Math.min.apply(null, xs), r = Math.max.apply(null, xs);
-      var t = Math.min.apply(null, ys), b = Math.max.apply(null, ys);
-      return { left: l + '%', top: t + '%', width: (r - l) + '%', height: (b - t) + '%' };
+    function xy(p) { return num(p[0]) + ' ' + num(p[1]); }
+    function pull(p, c, k) {
+      return [c[0] + (p[0] - c[0]) * k, c[1] + (p[1] - c[1]) * k];
     }
+    var edge = document.getElementById('glass-edge');
+    var pillars = document.getElementById('glass-pillars');
+    var dash = document.getElementById('glass-dash');
+    var mirror = document.getElementById('glass-mirror');
     var dot = at(0.015), small = at(0.34), mid = at(0.66), large = at(1.05);
     var full = [[0, 0], [18, 0], [36, 0], [50, 0], [64, 0], [82, 0], [100, 0], [100, 35], [100, 70], [100, 100], [68, 100], [50, 100], [32, 100], [0, 100], [0, 70], [0, 35]];
     var stops = [{ at: 0, pts: dot }, { at: 0.14, pts: small }, { at: 0.4, pts: mid }, { at: 0.62, pts: large }, { at: 0.8, pts: full }];
@@ -210,14 +212,28 @@
         return [lerp(pt[0], stops[i + 1].pts[n][0], t), lerp(pt[1], stops[i + 1].pts[n][1], t)];
       });
     }
+    function trace(pts) {
+      var c = pts.reduce(function (s, pt) { return [s[0] + pt[0], s[1] + pt[1]]; }, [0, 0]);
+      c = [c[0] / pts.length, c[1] / pts.length];
+      edge.setAttribute('d', 'M ' + pts.map(xy).join(' L ') + ' Z');
+      pillars.setAttribute('d',
+        'M ' + xy(pull(pts[15], c, 0.94)) + ' L ' + xy(pull(pts[14], c, 0.94)) +
+        ' M ' + xy(pull(pts[7], c, 0.94)) + ' L ' + xy(pull(pts[8], c, 0.94)));
+      dash.setAttribute('d', 'M ' + [13, 12, 11, 10, 9].map(function (i) { return xy(pull(pts[i], c, 0.9)); }).join(' L '));
+      var spanX = Math.abs(pts[6][0] - pts[0][0]);
+      var mw = Math.max(spanX * 0.18, 0.4);
+      var box = win.getBoundingClientRect();
+      var mh = mw * 0.42 * (box.width / Math.max(box.height, 1));
+      mirror.setAttribute('x', pts[3][0] - mw / 2);
+      mirror.setAttribute('y', pts[3][1] + mh * 0.55);
+      mirror.setAttribute('width', mw);
+      mirror.setAttribute('height', mh);
+      mirror.setAttribute('rx', Math.min(mw, mh) * 0.18);
+    }
     function apply(p) {
       var pts = mix(p);
-      var b = box(pts);
       win.style.clipPath = poly(pts);
-      glass.style.left = b.left;
-      glass.style.top = b.top;
-      glass.style.width = b.width;
-      glass.style.height = b.height;
+      trace(pts);
       glass.style.opacity = String(span(p, 0.08, 0.16) * (1 - span(p, 0.68, 0.8)));
       var glow = document.querySelector('.opening-glow');
       if (glow) glow.style.opacity = String(1 - span(p, 0.02, 0.12));
