@@ -17,6 +17,12 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/img/scenes/dawn-court.webp" as="image" fetchpriority="high">
+<script>
+try {
+  var save = navigator.connection && navigator.connection.saveData;
+  if (!save && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('cinematic');
+} catch (e) {}
+</script>
 <link rel="preload" href="assets/fonts/dmsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -43,7 +49,16 @@
     <div class="opening-window" id="opening-window">
       <img src="assets/img/scenes/dusk-ride.webp" width="1280" height="720" alt="The view through a car windshield at dusk, with no one in the frame.">
     </div>
-    <div class="opening-frame" aria-hidden="true"></div>
+    <div class="opening-glow" aria-hidden="true"></div>
+    <div class="opening-glass" aria-hidden="true">
+      <svg viewBox="0 0 160 100" preserveAspectRatio="none">
+        <path d="M10 30 C 40 16, 120 16, 150 30 L 154 70 C 118 84, 42 84, 6 70 Z" fill="none" stroke="rgba(247,243,236,.5)" stroke-width="1.1"/>
+        <path d="M12 32 L 6 72" stroke="rgba(14,24,18,.5)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M148 32 L 154 72" stroke="rgba(14,24,18,.5)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M68 20 h24 a2 2 0 0 1 2 2 v8 a1.4 1.4 0 0 1 -1.4 1.4 h-25.2 a1.4 1.4 0 0 1 -1.4 -1.4 v-8 a2 2 0 0 1 2 -2 z" fill="rgba(14,24,18,.4)" stroke="rgba(247,243,236,.38)" stroke-width=".6"/>
+        <path d="M14 76 Q 80 90, 146 76" fill="none" stroke="rgba(14,24,18,.28)" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    </div>
     <div class="opening-copy">
       <p class="opening-kicker">The Quiet Edge</p>
       <h1 class="opening-h" id="opening-h"><span class="line-a">Your mental game matters more than your next tournament.</span><span class="line-b">We support you. The athlete and the parent, on the same lesson.</span></h1>

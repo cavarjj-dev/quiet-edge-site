@@ -181,27 +181,61 @@
       window.__lenis = lenis;
     }
     var win = document.getElementById('opening-window');
-    var frame = document.querySelector('.opening-frame');
+    var glass = document.querySelector('.opening-glass');
     var bg = openingBg();
-    var startClip = mobile ? 'inset(32% 10% 38% 10%)' : 'inset(34% 27% 34% 27%)';
-    var frameFrom = mobile
-      ? { left: '10%', right: '10%', top: '32%', bottom: '38%' }
-      : { left: '27%', right: '27%', top: '34%', bottom: '34%' };
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#opening',
-        start: 'top ' + ((document.querySelector('.site-header') || {}).offsetHeight || 74) + 'px',
-        end: mobile ? '+=90%' : '+=170%',
-        pin: '.opening-pin',
-        scrub: mobile ? 0.4 : 0.65,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      }
-    })
-      .fromTo(win, { clipPath: startClip }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 1 }, 0)
-      .fromTo(frame, frameFrom, { left: '0%', right: '0%', top: '0%', bottom: '0%', opacity: 0, ease: 'none', duration: 1 }, 0)
-      .fromTo(bg, { scale: 1 }, { scale: 1.06, ease: 'none', duration: 1 }, 0)
-      .fromTo('.opening-field', { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.28 }, 0.72);
+    var shape = [[-28, -8], [-22, -16], [-12, -19], [0, -20], [12, -19], [22, -16], [28, -8], [36, 4], [40, 16], [34, 24], [18, 27], [0, 29], [-18, 27], [-34, 24], [-40, 16], [-36, 4]];
+    function at(spread) {
+      return shape.map(function (o) { return [50 + o[0] * spread, 44 + o[1] * spread]; });
+    }
+    function poly(pts) {
+      return 'polygon(' + pts.map(function (p) { return p[0].toFixed(2) + '% ' + p[1].toFixed(2) + '%'; }).join(', ') + ')';
+    }
+    function box(pts) {
+      var xs = pts.map(function (p) { return p[0]; });
+      var ys = pts.map(function (p) { return p[1]; });
+      var l = Math.min.apply(null, xs), r = Math.max.apply(null, xs);
+      var t = Math.min.apply(null, ys), b = Math.max.apply(null, ys);
+      return { left: l + '%', top: t + '%', width: (r - l) + '%', height: (b - t) + '%' };
+    }
+    var dot = at(0.015), small = at(0.34), mid = at(0.66), large = at(1.05);
+    var full = [[0, 0], [18, 0], [36, 0], [50, 0], [64, 0], [82, 0], [100, 0], [100, 35], [100, 70], [100, 100], [68, 100], [50, 100], [32, 100], [0, 100], [0, 70], [0, 35]];
+    var stops = [{ at: 0, pts: dot }, { at: 0.14, pts: small }, { at: 0.4, pts: mid }, { at: 0.62, pts: large }, { at: 0.8, pts: full }];
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function span(p, a, b) { return Math.max(0, Math.min(1, (p - a) / (b - a))); }
+    function mix(p) {
+      var i = 0;
+      while (i < stops.length - 2 && p > stops[i + 1].at) i++;
+      var t = span(p, stops[i].at, stops[i + 1].at);
+      return stops[i].pts.map(function (pt, n) {
+        return [lerp(pt[0], stops[i + 1].pts[n][0], t), lerp(pt[1], stops[i + 1].pts[n][1], t)];
+      });
+    }
+    function apply(p) {
+      var pts = mix(p);
+      var b = box(pts);
+      win.style.clipPath = poly(pts);
+      glass.style.left = b.left;
+      glass.style.top = b.top;
+      glass.style.width = b.width;
+      glass.style.height = b.height;
+      glass.style.opacity = String(span(p, 0.08, 0.16) * (1 - span(p, 0.68, 0.8)));
+      var glow = document.querySelector('.opening-glow');
+      if (glow) glow.style.opacity = String(1 - span(p, 0.02, 0.12));
+      if (bg) bg.style.transform = 'scale(' + (1 + 0.06 * p) + ')';
+      var field = document.querySelector('.opening-field');
+      if (field) field.style.opacity = String(span(p, 0.9, 1));
+    }
+    apply(0);
+    ScrollTrigger.create({
+      trigger: '#opening',
+      start: 'top ' + ((document.querySelector('.site-header') || {}).offsetHeight || 74) + 'px',
+      end: mobile ? '+=110%' : '+=180%',
+      pin: '.opening-pin',
+      scrub: mobile ? 0.35 : 0.5,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: function (self) { apply(self.progress); }
+    });
   }
 
   function openingBg() {
