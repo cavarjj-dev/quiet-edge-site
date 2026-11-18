@@ -943,19 +943,29 @@ footer .horizon, .footer-horizon { color: var(--brass-lt); width: min(100%, 280p
 .opening-pin { position: relative; min-height: calc(100svh - var(--header)); overflow: hidden; }
 .opening-bg, .opening-window { position: absolute; inset: 0; }
 .opening-bg img, .opening-window img { width: 100%; height: 100%; object-fit: cover; }
-.opening-window { clip-path: inset(28% 18% 34% 18%); }
+.opening-window { z-index: 2; clip-path: polygon(32.64% 39.04%, 36.36% 34.08%, 42.56% 32.22%, 50% 31.6%, 57.44% 32.22%, 63.64% 34.08%, 67.36% 39.04%, 72.32% 46.48%, 74.8% 53.92%, 71.08% 58.88%, 61.16% 60.74%, 50% 61.98%, 38.84% 60.74%, 28.92% 58.88%, 25.2% 53.92%, 27.68% 46.48%); }
 .opening-window img { transform: scale(1.04); }
-.opening-frame {
-  position: absolute;
+.opening-glow, .opening-glass { position: absolute; pointer-events: none; }
+.opening-glow {
   z-index: 4;
-  left: 18%;
-  right: 18%;
-  top: 28%;
-  bottom: 34%;
-  border: 1px solid rgba(224, 196, 138, .85);
-  pointer-events: none;
+  left: 50%;
+  top: 44%;
+  width: 22px;
+  height: 22px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(circle, rgba(255, 250, 236, .98) 0 22%, rgba(224, 196, 138, .55) 42%, transparent 70%);
+  box-shadow: 0 0 26px 10px rgba(255, 228, 180, .55);
 }
-html.cinematic .opening-frame { left: 27%; right: 27%; top: 34%; bottom: 34%; }
+.opening-glass {
+  z-index: 4;
+  inset: 0;
+  opacity: 0;
+}
+.opening-glass svg { display: block; width: 100%; height: 100%; overflow: visible; }
+html.cinematic .opening-glow { opacity: 1; }
+html.cinematic .opening-window { clip-path: polygon(49.58% 43.88%, 49.67% 43.76%, 49.82% 43.72%, 50% 43.7%, 50.18% 43.72%, 50.33% 43.76%, 50.42% 43.88%, 50.54% 44.06%, 50.6% 44.24%, 50.51% 44.36%, 50.27% 44.41%, 50% 44.44%, 49.73% 44.41%, 49.49% 44.36%, 49.4% 44.24%, 49.46% 44.06%); }
 .opening-field { position: absolute; inset: 0; z-index: 3; opacity: 0; }
 .opening-field img { width: 100%; height: 100%; object-fit: cover; }
 .opening-copy {
@@ -998,17 +1008,13 @@ html.cinematic .opening-frame { left: 27%; right: 27%; top: 34%; bottom: 34%; }
   border-bottom-color: var(--brass-lt);
 }
 html.cinematic .opening-pin { height: calc(100svh - var(--header)); min-height: 0; }
-html.cinematic .opening-window { clip-path: inset(34% 27% 34% 27%); }
-@media (max-width: 800px) {
-  .opening-window, html.cinematic .opening-window { clip-path: inset(32% 10% 38% 10%); }
-}
 @media (prefers-reduced-motion: reduce) {
   .opening { height: auto; }
   .opening-pin { height: auto; min-height: 0; }
   .opening-bg, .opening-window { position: relative; height: 46vh; clip-path: none; }
   .opening-window img { transform: none; }
   .opening-copy { position: relative; background: #0e1812; padding-top: 28px; }
-  .opening-frame { display: none; }
+  .opening-glow, .opening-glass { display: none; }
 }
 
 .hero .hero-title {

@@ -17,6 +17,12 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/img/scenes/dawn-court.webp" as="image" fetchpriority="high">
+<script>
+try {
+  var save = navigator.connection && navigator.connection.saveData;
+  if (!save && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('cinematic');
+} catch (e) {}
+</script>
 <link rel="preload" href="assets/fonts/dmsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -43,7 +49,15 @@
     <div class="opening-window" id="opening-window">
       <img src="assets/img/scenes/dusk-ride.webp" width="1280" height="720" alt="The view through a car windshield at dusk, with no one in the frame.">
     </div>
-    <div class="opening-frame" aria-hidden="true"></div>
+    <div class="opening-glow" aria-hidden="true"></div>
+    <div class="opening-glass" aria-hidden="true">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="glass-edge" fill="none" stroke="rgba(247,243,236,.78)" stroke-width="1.6" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+        <path id="glass-pillars" fill="none" stroke="rgba(14,24,18,.4)" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <path id="glass-dash" fill="none" stroke="rgba(14,24,18,.28)" stroke-width="7" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <rect id="glass-mirror" fill="rgba(14,24,18,.38)" stroke="rgba(247,243,236,.5)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
     <div class="opening-copy">
       <p class="opening-kicker">The Quiet Edge</p>
       <h1 class="opening-h" id="opening-h"><span class="line-a">Your mental game matters more than your next tournament.</span><span class="line-b">We support you. The athlete and the parent, on the same lesson.</span></h1>
